@@ -25,14 +25,14 @@ pipeline {
     }
     stage("Deploy") {
       environment {
-        usr = $nexus_cred_USR
-        psw = $nexus_cred_PSW
-        mynexus = $nexus_cred
+        usr = "$nexus_cred_USR"
+        psw = "$nexus_cred_PSW"
+        mynexus = "$nexus_cred"
       }
       steps {
         echo "This is deploy stage"
         echo "${MY_ENV} ${APPCI}"
-        echo "$usr $psw $mynexys"
+        echo $usr $psw $mynexys
       }
     }
   }
