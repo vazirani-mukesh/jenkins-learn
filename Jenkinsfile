@@ -1,3 +1,5 @@
+MY_ENV = 'outside-pipeline'
+APPCI = 'env'
 pipeline {
   agent any
   environment {
@@ -17,10 +19,6 @@ pipeline {
         APPCI = 'drq'
       }
       steps {
-        // environment {
-        // MY_ENV = 'stg'
-        // APPCI = 'cls'
-        //     }
         echo "This is build stage"
         echo "${MY_ENV} ${APPCI}"
       }
