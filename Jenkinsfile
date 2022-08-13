@@ -27,7 +27,7 @@ pipeline {
       steps {
         echo "This is deploy stage"
         echo "${MY_ENV} ${APPCI}"
-        echo "${nexus_cred}"
+        echo "$nexus_cred_USR $nexus_cred_PSW $nexus_cred"
       }
     }
   }
