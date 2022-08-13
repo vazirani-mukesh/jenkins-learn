@@ -28,6 +28,7 @@ pipeline {
     stage("Deploy") {
       steps {
         echo "This is deploy stage"
+        echo "${MY_ENV} ${APPCI}"
       }
     }
   }
