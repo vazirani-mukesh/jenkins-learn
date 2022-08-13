@@ -29,6 +29,11 @@ pipeline {
       }
     }
     stage("Deploy") {
+      when {
+        expression {
+          params.TOGGLE
+        }
+      }
       steps {
         echo "This is deploy stage"
         withCredentials([usernamePassword(credentialsId: 'nexus', passwordVariable: 'PSW', usernameVariable: 'USR')]) {
