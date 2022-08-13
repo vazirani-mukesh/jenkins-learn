@@ -32,7 +32,7 @@ pipeline {
       steps {
         echo "This is deploy stage"
         echo "${MY_ENV} ${APPCI}"
-        echo $usr $psw $mynexys
+        echo '$usr $psw $mynexys'
       }
     }
   }
