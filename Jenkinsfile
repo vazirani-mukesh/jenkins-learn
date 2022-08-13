@@ -1,5 +1,3 @@
-MY_ENV = 'outside-pipeline'
-APPCI = 'env'
 pipeline {
   agent any
   environment {
