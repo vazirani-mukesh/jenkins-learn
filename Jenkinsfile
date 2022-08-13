@@ -3,7 +3,6 @@ pipeline {
   environment {
     MY_ENV = 'dev'
     APPCI = 'ava'
-    nexus_cred = credentials('nexus')
   }
   stages {
     stage('Test') {
@@ -20,19 +19,14 @@ pipeline {
       steps {
         echo "This is build stage"
         echo "${MY_ENV} ${APPCI}"
-        echo "${nexus_cred}"
       }
     }
     stage("Deploy") {
-      environment {
-        usr = "$nexus_cred_USR"
-        psw = "$nexus_cred_PSW"
-        mynexus = "$nexus_cred"
-      }
       steps {
         echo "This is deploy stage"
-        echo "${MY_ENV} ${APPCI}"
-        echo '$usr $psw $mynexys'
+        withCredentials([usernamePassword(credentialsId: 'nexus', passwordVariable: 'PSW', usernameVariable: 'USR')]) {
+          echo "${PSW} ${USR}"
+        }
       }
     }
   }
