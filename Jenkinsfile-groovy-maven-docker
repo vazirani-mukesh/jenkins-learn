@@ -13,15 +13,19 @@ pipeline {
             }
         }
         stage('Build Jar') {
-            echo 'Building Jar file'
-            script {
-                gv.buildJar()
+            steps {
+                echo 'Building Jar file'
+                script {
+                    gv.buildJar()
+                }
             }
         }
         stage('Docker login') {
-            echo 'Logging in Docker...'
-            script {
-                gv.dockerLogin()
+            steps {
+                echo 'Logging in Docker...'
+                script {
+                    gv.dockerLogin()
+                }
             }
         }
         stage('Docker build image') {
