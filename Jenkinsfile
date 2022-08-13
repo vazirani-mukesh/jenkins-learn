@@ -26,6 +26,11 @@ pipeline {
       steps {
         echo "This is build stage"
         echo "${MY_ENV} ${APPCI}"
+        script {
+          withEnv(['MY_ENV=inside_script', 'APPCI=check']) {
+          echo "${MY_ENV} ${APPCI}"
+          }
+        }
       }
     }
     stage("Deploy") {
