@@ -53,8 +53,8 @@ pipeline {
     }
     stage('inputparamcheck') {
       input {
-        message: 'please select your env'
-        ok: 'env selected'
+        message 'please select your env'
+        ok 'env selected'
         parameters {
           choice(name: 'MY_ENV', choices: ['one', 'two','three'], description: 'please select env')
         }
