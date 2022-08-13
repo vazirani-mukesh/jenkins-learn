@@ -4,6 +4,9 @@ pipeline {
     tools {
         maven 'maven'
     }
+    parameters {
+        string(name: 'DOCKER_USER_NAME', default: 'test', description: 'Enter dockerhub user name')
+    }
     stages {
         stage('init') {
             steps {
