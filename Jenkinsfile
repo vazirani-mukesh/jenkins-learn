@@ -51,5 +51,18 @@ pipeline {
         echo "${params.PASSWORD}"
       }
     }
+    stage('inputparamcheck') {
+      input {
+        message: 'please select your env'
+        ok: 'env selected'
+        parameters {
+          choice(name: 'MY_ENV', choices: ['one', 'two','three'], description: 'please select env')
+        }
+      }
+      steps {
+        echo 'This is  InputParam check'
+        echo "${MY_ENV}"
+      }
+    }
   }
 }
