@@ -3,6 +3,7 @@ pipeline {
   environment {
     MY_ENV = 'dev'
     APPCI = 'ava'
+    nexus_cred = credentials('nexus')
   }
   stages {
     stage('Test') {
@@ -19,12 +20,14 @@ pipeline {
       steps {
         echo "This is build stage"
         echo "${MY_ENV} ${APPCI}"
+        echo "${nexus_cred}"
       }
     }
     stage("Deploy") {
       steps {
         echo "This is deploy stage"
         echo "${MY_ENV} ${APPCI}"
+        echo "${nexus_cred}"
       }
     }
   }
