@@ -16,7 +16,7 @@ pipeline {
       steps {
         echo 'This is test stage'
         echo "${MY_ENV} ${APPCI}"
-        echo "${BRANCH_NAME}"
+        //echo "${BRANCH_NAME}"
       }
     }
     stage('Build') {
