@@ -23,6 +23,11 @@ pipeline {
         MY_ENV = 'qa'
         APPCI = 'drq'
       }
+      when {
+        expression {
+          BRANCH_NAME == 'main'
+        }
+      }
       steps {
         echo "This is build stage"
         echo "${MY_ENV} ${APPCI}"
@@ -36,7 +41,7 @@ pipeline {
     stage("Deploy") {
       when {
         expression {
-          params.TOGGLE
+          params.TOGGLE && BRANCH_NAME == 'main'
         }
       }
       steps {
