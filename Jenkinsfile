@@ -25,7 +25,7 @@ pipeline {
       }
       when {
         expression {
-          $BRANCH_NAME == 'main'
+          BRANCH_NAME == 'main'
         }
       }
       steps {
@@ -34,6 +34,7 @@ pipeline {
         script {
           withEnv(['MY_ENV=inside_script', 'APPCI=check']) {
           echo "${MY_ENV} ${APPCI}"
+          echo "${BRANCH_NAME}"
           }
         }
       }
@@ -41,7 +42,7 @@ pipeline {
     stage("Deploy") {
       when {
         expression {
-          params.TOGGLE && $BRANCH_NAME == 'main'
+          params.TOGGLE && BRANCH_NAME == 'main'
         }
       }
       steps {
