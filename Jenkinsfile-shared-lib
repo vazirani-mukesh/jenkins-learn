@@ -52,4 +52,7 @@ pipeline {
             }
         }
     }
+    post {
+        postJobCleanUp "${params.userName}/${JOB_NAME}:${BUILD_NUMBER}"
+    }
 }
