@@ -50,9 +50,16 @@ pipeline {
                     pushImage "${params.userName}/${JOB_NAME}:${BUILD_NUMBER}"
                 }
             }
+            post {
+                failure {
+                    postJobCleanUp "${params.userName}/${JOB_NAME}:${BUILD_NUMBER}"
+                }
+            }
         }
     }
     post {
-        postJobCleanUp "${params.userName}/${JOB_NAME}:${BUILD_NUMBER}"
+        success {
+            postJobCleanUp "${params.userName}/${JOB_NAME}:${BUILD_NUMBER}"
+        }
     }
 }
