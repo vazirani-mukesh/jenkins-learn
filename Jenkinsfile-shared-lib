@@ -8,6 +8,9 @@ pipeline {
     parameters {
         string(name: 'userName', defaultValue: '')
     }
+    tools {
+        maven 'maven'
+    }
     stages {
         stage('Init') {
             steps {
