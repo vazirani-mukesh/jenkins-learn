@@ -25,7 +25,7 @@ pipeline {
       }
       when {
         expression {
-          BRANCH_NAME == 'main'
+          $BRANCH_NAME == 'main'
         }
       }
       steps {
@@ -41,7 +41,7 @@ pipeline {
     stage("Deploy") {
       when {
         expression {
-          params.TOGGLE && BRANCH_NAME == 'main'
+          params.TOGGLE && $BRANCH_NAME == 'main'
         }
       }
       steps {
