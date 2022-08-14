@@ -6,12 +6,14 @@ def gv
 pipeline {
     agent any
     parameters {
-        String(name: 'userName', defaultValue: '')
+        string(name: 'userName', defaultValue: '')
     }
     stages {
         stage('Init') {
             steps {
-                gv = load "script.groovy"
+                script {
+                    gv = load "script.groovy"
+                }
             }
         }
         stage('Build Jar') {
