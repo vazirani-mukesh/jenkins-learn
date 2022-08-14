@@ -42,6 +42,11 @@ pipeline {
                     dockerLogin()
                 }
             }
+            post {
+                failure {
+                    postJobCleanUp "${params.userName}/${JOB_NAME}:${BUILD_NUMBER}"
+                }
+            }
         }
         stage("Pushing Docker Image") {
             steps {
