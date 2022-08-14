@@ -1,1 +1,48 @@
+#!/usr/bin/env groovy
+
+@Library('jenkins-shared-library')
 def gv
+
+pipeline {
+    agent any
+    parameters {
+        String(name: 'userName', defaultValue: '')
+    }
+    stages {
+        stage('Init') {
+            gv = load "script.groovy"
+        }
+        stage('Build Jar') {
+            steps {
+                echo "Building Jar File"
+                script {
+                    gv.buildJar()
+                }
+            }
+        }
+        stage('Build Docker Image') {
+            steps {
+                echo 'Building Docker Image'
+                script {
+                    buildImage "${params.userName}/${JOB_NAME}:${BUILD_NUMBER}"
+                }
+            }
+        }
+        stage('Docker Login') {
+            steps {
+                echo "Docker Login"
+                script {
+                    dockerLogin()
+                }
+            }
+        }
+        stage("Pushing Docker Image") {
+            steps {
+                echo 'Pushing image to DockerHub'
+                script {
+                    pushImage "${params.userName}/${JOB_NAME}:${BUILD_NUMBER}"
+                }
+            }
+        }
+    }
+}
